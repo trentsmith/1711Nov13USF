@@ -1,5 +1,7 @@
 package com.revature.hello;
 
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+
 public class Primitives {
 	//A class to detail some cool things about primitives and their wrapper classes
 	
@@ -31,6 +33,7 @@ public class Primitives {
 		
 		//octal numbers(digits 0-7)
 		int oct = 017;
+		System.out.println(oct);
 		
 		//hex(0-9,A-F)
 		int hex = 0xFF;
