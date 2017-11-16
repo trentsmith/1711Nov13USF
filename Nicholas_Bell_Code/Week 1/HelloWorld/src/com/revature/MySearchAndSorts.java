@@ -1,4 +1,4 @@
-package com.revature.day2demo;
+package com.revature;
 
 public class MySearchAndSorts {
 	public static void main(String[] args) {
@@ -25,7 +25,7 @@ public class MySearchAndSorts {
 	
 	
 	int[] uarr3 = {9, 7, 1, 3, 4, 8, 5, 0, 2, 6};
-	
+	mergesort(uarr3, 0, uarr3.length);
 	for (int i : uarr3) {
 		System.out.print(i);
 	}
@@ -113,50 +113,50 @@ public class MySearchAndSorts {
 		}
 	}
 
+	static void mergesort(int[] array) {
+		mergesort(array, 0, array.length - 1);
+	}
+	static void mergesort(int[] arr, int left, int right) {
+		int mid = (left + right) / 2;
+		if(left < right) {
+			mid = (left + right) / 2;
+			mergesort(arr, left, mid);
+			mergesort(arr, mid + 1, right);
+			merge(arr, left, mid, right);
+		}
 
-	static int[] mergesort(int[] arr) {
-		int len = arr.length;
-		if(len < 2) return arr;
-		
-		int[] arr1 = new int[(len/2)];
-		int[] arr2 = new int[(len/2)];
-		
-		mergesort(arr1);
-		mergesort(arr2);
-		
-		return merge(arr1, arr2);
 		
 	}
 	
-	static int[] merge(int[] Larr, int[] Rarr) {
-		int lenL = Larr.length, lenR = Rarr.length;
-		int len_total = lenL + lenR;
-		int[] ans = new int[Larr.length + Rarr.length];
+	static void merge(int[] arr, int left, int mid, int right) {
+		int size = arr.length;
+		int[] tmp = new int[size];
 		
-		int l_Ind = 0, r_Ind = 0, a_Ind = 0;
-		
-		/*
-		 *  
-		 */
-		while((l_Ind + r_Ind) < len_total) {
-			if (l_Ind + 1 == lenL) {
-				ans[a_Ind++] = Rarr[r_Ind++];
-				continue;
-			}
-			else if (r_Ind + 1 == lenR) {
-				ans[a_Ind++] = Larr[l_Ind++];
-				continue;
-			}
-			
-			if(Larr[l_Ind] < Rarr[r_Ind]) {
-				ans[a_Ind++] = Larr[l_Ind++];
-			}
-			else {
-				ans[a_Ind++] = Rarr[r_Ind++];
-			}
+		for (int i = left; i < right; i++) {
+			tmp[i] = arr[left + i];
 		}
 		
-		return ans;
+		int l = left;
+		int r = mid + 1;
+		int cur = left;
+		while (l <= mid && r <= right) {
+			if(tmp[l] <= tmp[r]) {
+				arr[cur] = tmp[l];
+				l++;
+			}
+			else {
+				arr[cur] = tmp[r];
+				r++;
+			}
+			cur++;
+		}
+		
+		int remain = mid - l;
+		for (int i = 0; i < remain; i++) {
+			arr[cur+i] = tmp[l + i];
+		}
+		
+
 			
 
 		
