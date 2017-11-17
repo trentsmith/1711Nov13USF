@@ -66,6 +66,19 @@ public class UnderstandSearchAndSorts {
 		}		
 	}
 	
+	//insertion sort
+	public void insertionSort(int[] a) {
+		for (int i = 1; i < a.length; i++) {
+			int j = a[i];
+			int k = i - 1;
+			while ((j >= 0) && (a[k] > j)) {
+				a[k+1] = a[k];
+				k--;
+				a[k+1] = k;
+			}
+		}
+	}
+	
 	
 	//merge sort
 	private void mergeSort(int[] A, int[] B, int n) {

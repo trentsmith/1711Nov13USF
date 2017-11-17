@@ -4,6 +4,8 @@ import java.util.StringTokenizer;
 
 public class StringAndThings {
 
+	private Runtime rt = Runtime 
+	
 	public static void main(String[] args) {
 
 		String str = "hello";
@@ -45,6 +47,10 @@ public class StringAndThings {
 		System.out.println(strSum);
 		
 		System.out.println(addStrings(twenty, thirty));
+		
+		System.gc();
+		
+		
 
 	}
 	
