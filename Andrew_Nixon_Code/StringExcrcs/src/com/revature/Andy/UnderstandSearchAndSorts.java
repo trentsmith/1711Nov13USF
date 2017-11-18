@@ -4,22 +4,22 @@ public class UnderstandSearchAndSorts {
 
 	int[] arr;
 	
+	public UnderstandSearchAndSorts() {
+		
+	}
+	
 	public UnderstandSearchAndSorts(int[] a) {
 		arr = a;
 	}
 	
-	public static void main(String[] args) {
-		/*
-		 * binary search
-		 * breadth-first search
-		 * depth-first search
-		 * bubble sort
-		 * merge sort
-		 * insertion sort
-		 */
-
+	public int[] getArr() {
+		return arr;
 	}
-	
+
+	public void setArr(int[] arr) {
+		this.arr = arr;
+	}
+
 	public int binarySearch(int value) {
 		int L = 0;
 		int R = arr.length - 1;
@@ -50,33 +50,69 @@ public class UnderstandSearchAndSorts {
 	//public int breadthFirstSearch()
 
 	//bubbleSort 
-	public void bubbleSort(int[] a) {
-		int n = a.length;
+	public int [] bubbleSort() {
+		int n = this.arr.length;
 		boolean noSwap = false;
 		while(noSwap) {
 			noSwap = true;
 			for (int i = 0; i < n-1 ; i++) {
-				if (a[i] > a[i+1]) {
-					int temp = a[i];
-					a[i] = a[i+1];
-					a[i+1] = temp;
+				if (this.arr[i] > this.arr[i+1]) {
+					int temp = this.arr[i];
+					this.arr[i] = this.arr[i+1];
+					this.arr[i+1] = temp;
 					noSwap = false;
 				}
 			}
-		}		
+		}
+		for (int i = 0; i < this.arr.length; i++){
+			System.out.print(this.arr[i] + ", ");
+			
+		}
+		return this.arr;
+	}
+	public int[] bubbleSort(int[] a) {
+		int[] result = a;
+		int n = result.length;
+		boolean noSwap = true;
+		while(noSwap) {
+			noSwap = false;
+			for (int i = 0; i < n-1 ; i++) {
+				if (result[i] > result[i+1]) {
+					int temp = result[i];
+					result[i] = result[i+1];
+					result[i+1] = temp;
+					noSwap = true;
+				}
+			}
+		}
+		for (int i = 0; i < result.length; i++){
+			System.out.print(result[i] + ", ");
+			
+		}
+		System.out.println();
+		return result;
 	}
 	
 	//insertion sort
-	public void insertionSort(int[] a) {
-		for (int i = 1; i < a.length; i++) {
-			int j = a[i];
-			int k = i - 1;
-			while ((j >= 0) && (a[k] > j)) {
-				a[k+1] = a[k];
-				k--;
-				a[k+1] = k;
+	public int[] insertionSort(int[] a) {
+		int[] result = a;
+		int i = 1;
+		while (i < result.length) {
+			int j = i;
+			while ((j > 0) && (result[j-1] > result[j])) {
+				int temp = result[j];
+				result[j] = result[j-1];
+				result[j-1] = temp;
+				j--;
 			}
+			i++;
 		}
+		for (int j = 0; j < result.length; j++){
+			System.out.print(result[j] + ", ");
+			
+		}
+		System.out.println();
+		return result;
 	}
 	
 	
