@@ -1,4 +1,4 @@
-package com.warmup;
+ package com.warmup;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -58,7 +58,7 @@ public class WarmUps {
 		do {
 				System.out.println("Enter Choice: "
 				+ "\n1) Square root "
-				+ "\n2)Display Date "
+				+ "\n2) Display Date "
 				+ "\n3) Split 'I am Learning Core Java' and store in array\n");
 		
 				Scanner scan = new Scanner(System.in);

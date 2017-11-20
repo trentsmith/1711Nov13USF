@@ -1,0 +1,5 @@
+0:J:D:jdu:jdpass:5.0
+1:Q:C:qcu:qcpass:20.0
+2:B:D:bdu:bdpass:30.0
+3:L:J:lju:ljpass:3995.0
+4:Nick:Bell:nbu:nbpass:165.0
