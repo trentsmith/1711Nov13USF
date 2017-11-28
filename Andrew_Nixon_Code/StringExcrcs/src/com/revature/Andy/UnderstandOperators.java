@@ -2,7 +2,7 @@ package com.revature.Andy;
 
 public class UnderstandOperators {
 	/*
-	 * java operators is a special symbol that can be applied t a set of variables, values or 
+	 * java operators is a special symbol that can be applied to a set of variables, values or 
 	 * literals referred to as operands and that returns a result. there are available in java 
 	 * unary- 1 operand
 	 * binary- 2 operands

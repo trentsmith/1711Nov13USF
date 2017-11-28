@@ -4,7 +4,7 @@ import java.util.StringTokenizer;
 
 public class StringAndThings {
 
-	private Runtime rt = Runtime 
+	//	private Runtime rt = Runtime 
 	
 	public static void main(String[] args) {
 

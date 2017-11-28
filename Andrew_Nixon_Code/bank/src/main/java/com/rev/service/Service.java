@@ -14,5 +14,19 @@ public class Service {
 		dao.addUser(u);
 		return u;
 	}
+	
+	public User getUser(String username) {
+		User u = dao.getUser(username);
+		return u;
+	}
+	
+	public double getBalance(User u) {
+		return dao.getBalance(u);
+	}
+	
+	public double depositMoney(User currentUser, double amount) {
+		return dao.depositMoney(currentUser, amount);
+		
+	}
 
 }

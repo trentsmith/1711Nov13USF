@@ -12,9 +12,7 @@ public class User {
 	private String userName;
 	private String password;
 	private double balance;
-	public int getId() {
-		return id;
-	}
+	
 	
 	public User() {}
 	
@@ -26,6 +24,10 @@ public class User {
 		this.userName = userName;
 		this.password = password;
 		this.balance = balance;
+	}
+	
+	public int getId() {
+		return id;
 	}
 
 	public void setId(int id) {
@@ -61,7 +63,6 @@ public class User {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-
 	
 	public String toFile() {
 		return id + ":" + firstName + ":" + lastName + ":" + userName + ":" + password + ":" + balance;

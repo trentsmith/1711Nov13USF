@@ -57,5 +57,7 @@ public class Warmup1116 {
 	public int ternaryMin(int x, int y) {
 		return (x < y) ? x : y;
 	}
+	
+	
 
 }
