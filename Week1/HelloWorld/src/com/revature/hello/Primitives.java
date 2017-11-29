@@ -1,7 +1,5 @@
 package com.revature.hello;
 
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
-
 public class Primitives {
 	//A class to detail some cool things about primitives and their wrapper classes
 	
@@ -26,15 +24,16 @@ public class Primitives {
 		 * int, so we get a compiler error when trying to declare
 		 * it without the L signifier. 
 		 */
-		//long wronglong = 98323559823; // does not compile
+		//long wronglong = 98_323_559_823; // does not compile
 		long rightlong = 98323559823L;
 		
 		long okToCast = 13415;  //automatically casted to long
+		System.out.println(Long.MAX_VALUE);
+		System.out.println(Long.MIN_VALUE);
 		
 		//octal numbers(digits 0-7)
 		int oct = 017;
 		System.out.println(oct);
-		
 		//hex(0-9,A-F)
 		int hex = 0xFF;
 		int hex2 = 0X6A;
