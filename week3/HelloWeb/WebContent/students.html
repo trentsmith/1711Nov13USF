@@ -2,7 +2,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Event Handling Intro</title>
+<title>DOM Manipulation</title>
+
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
@@ -22,46 +23,33 @@
 	crossorigin="anonymous"></script>
 
 
-
 </head>
 <body>
 
-	<h1>JS Function Viewer</h1>
-	<br>
-	<h3>Problem 1: Fibonacci</h3>
-	<br>
-	<input type="number" id="fib" class="form-control"
-	 placeholder="Enter n" />
-
-	<button id="doFib" class="btn btn-primary">Fibonacc'ed!</button>
-	=
-
-	<b>
-		<p id="fibDisplay"></p>
-	</b>
-
+<h1>Student Information</h1>
 
 <br><br>
-<h1>Event Propagation Demo</h1>
+<h4>Id:</h4> 
+<input type="text" class="form-control" id="id"/>
+<br>
+<h4>Name:</h4>
+<input type="text" class="form-control" id="name"/>
+<br>
+<h4>Major:</h4>
+<input type="text" class="form-control" id="major"/>
+<br>
+<button id="add" class="btn btn-primary">Add Student</button>
 
-<div id="outer" style="background-color: red">
-	<br> OUTER <br>
-	
-	<div id="middle" style="background-color: blue">
-		<br> MIDDLE <br>
-		
-		<div id ="inner" style="background-color: green">
-			<br> INNER <br>
-		</div>
-		<br><br>
-	</div>
-	<br><br>
-</div>
 <br><br>
+<table id="students" class="table">
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Major</th>
+	</tr>
+</table>
 
-<h3 id="count">COUNT</h3>
+<script src="js/students.js"></script>
 
-
-	<script type="text/javascript" src="js/functions.js"></script>
 </body>
 </html>
