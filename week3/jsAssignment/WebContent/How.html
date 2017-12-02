@@ -24,7 +24,8 @@
 	<div class="jumbotron">
 		<h1>How JDBC is Great?</h1>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="https://v4-alpha.getbootstrap.com/components/navbar/">Navbar</a>
+			<a class="navbar-brand"
+				href="https://v4-alpha.getbootstrap.com/components/navbar/">Navbar</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -54,6 +55,16 @@
 				</ul>
 			</div>
 		</nav>
+		<ul>
+			<p>How does JBDC does work?
+			<p>
+			<li>Statement: Used to make queries to the database directly.</li>
+			<li>PreparedStatement: Used to make DML statement to the database. The crucial difference between a Statement and a PreparedStatemenr is that a PeparedStatement takes input from the user. This means steps must be ut in place to avoid SQL injection.</li>
+			<li>CallableStatement: Used to call a stored procedure in he database.</li>
+			<li>ResultSet: An interface used to return the results upon executing a statement</li>
+			<li>DriverManager: It is a class used to manage drivers for Databases. It can be considered the connection factory.</li>
+			<li>Connection: An interface that allows access to a session of a database</li>
+		</ul>
 	</div>
 </body>
 </html>

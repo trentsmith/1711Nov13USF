@@ -205,5 +205,50 @@ SELECT * FROM EMPLOYEES where DEPARTMENT= 'HR' AND USERNAME='jsmith';
 SELECT * FROM EMPLOYEES where DEPARTMENT= 'HR' OR MANAGER = 1;
 
 
+Select name FROM PRODUCT ORDER BY NAME ASC;
+Select name FROM PRODUCT ORDER BY NAME DESC;
+Select name FROM CATEGORY ORDER BY NAME;
+
+INSERT INTO EMPLOYEES (EMPLOYEEID, USERNAME, PASSWORD, DEPARTMENT, MANAGER) 
+Values (5, 'anixon', 'an', 'IT', 0);
+INSERT INTO Supplier (SUPPID, NAME) VALUES (3, 'LMNO Office Tools');
+INSERT INTO CATEGORY (CATID, NAME) VALUES (8, 'Misc');
+
+UPDATE PRODUCT SET UNITCOST = 3.99 WHERE NAME = 'Ruler';
+UPDATE CATEGORY SET DESCRIPT = 'this cleans things' WHERE NAME like 'C%Supplies';
+
+select username from EMPLOYEES where USERNAME like 'j%';
+select name from PRODUCT where NAME like 'O%';
+
+Select name from product where UNITCOST between 3 and 10;
+Select name from product where UNITCOST between 500 and 800;
+
+Delete from category where NAME = 'Audio Visual';
+INSERT INTO Supplier (SUPPID, NAME) VALUES (4, 'UVW Office Tools');
+INSERT INTO Supplier (SUPPID, NAME) VALUES (5, 'UVW Office Tools');
+INSERT INTO Supplier (SUPPID, NAME) VALUES (6, 'UVW Office Tools');
+Delete from SUPPLIER where NAME = 'UVW Office Tools';
+
+CREATE OR REPLACE FUNCTION Laser_Length
+return number
+is 
+  Desc_Length number;
+  dl varchar(255);
+begin
+Select DESCRIPT INTO dl FROM PRODUCT WHERE PRODUCTID = 4;
+SELECT Length(dl) INTO Desc_Length from dual;
+return Desc_Length;
+end;
+/
+DECLARE
+  total NUMBER;
+BEGIN
+  
+  total := Laser_Length();
+  
+  DBMS_OUTPUT.PUT_LINE('total number of artists is: ' || total);
+  
+END;
+/
 
 
