@@ -84,15 +84,96 @@ WHERE HIREDATE BETWEEN '01-JUN-03' AND '01-MAR-04';
 -- Notice the WHERE clause in the DELETE statement. The WHERE clause specifies
 -- which record(s) that should be deleted. If you omit the WHERE clause, all
 -- records in the table will be deleted!
-DELETE FROM c
-(FROM INVOICE AS c
-INNER JOIN CUSTOMER AS p ON c.CUSTOMERID = p.CUSTOMERID)
-WHERE p.FIRSTNAME = 'Robert' AND p.LASTNAME = 'Walter'; 
+DELETE FROM INVOICELINE
+WHERE INVOICEID IN (SELECT INVOICEID FROM INVOICE
+WHERE CUSTOMERID IN (SELECT CUSTOMERID FROM CUSTOMER
+WHERE FIRSTNAME = 'Robert' AND LASTNAME = 'Walter'));
+
+DELETE FROM INVOICE
+WHERE CUSTOMERID IN (SELECT CUSTOMERID FROM CUSTOMER
+WHERE FIRSTNAME = 'Robert' AND LASTNAME = 'Walter');
 
 DELETE FROM CUSTOMER
 WHERE FIRSTNAME = 'Robert' AND LASTNAME = 'Walter';
 
+-- 3.1 System Defined Functions
+-- Create a function that returns the current time.
+CREATE OR REPLACE FUNCTION get_current_time
+RETURN TIMESTAMP
+IS
+  current_time TIMESTAMP;
+BEGIN
+  SELECT LOCALTIMESTAMP INTO current_time FROM DUAL;
+  RETURN current_time;
+END;
+/
+SELECT get_current_time FROM DUAL;
 
+-- Create a function that returns the length of a mediatype from the mediatype table
+CREATE OR REPLACE FUNCTION get_mediatype_length(media_id IN NUMBER)
+RETURN NUMBER
+IS
+  media_length NUMBER;
+BEGIN
+  SELECT LENGTH(NAME) INTO media_length FROM MEDIATYPE WHERE MEDIATYPEID = media_id;
+  RETURN media_length;
+END; -- Not finish
+/
+SELECT get_mediatype_length(2) FROM DUAL;
+
+-- 3.2 System Defined Aggregate Functions
+-- Create a function that returns the average total of all invoices
+CREATE OR REPLACE FUNCTION avg_total_invoices
+RETURN NUMBER
+IS
+  avg_total NUMBER(10,2);
+BEGIN
+  SELECT AVG(TOTAL)INTO avg_total FROM INVOICE;
+  RETURN avg_total;
+END;
+/
+SELECT avg_total_invoices FROM DUAL;
+
+-- Create a function that returns the most expensive track
+CREATE OR REPLACE FUNCTION get_most_exp_track
+RETURN NUMBER
+IS
+  track_max NUMBER(10,2);
+BEGIN
+  SELECT MAX(UNITPRICE) INTO track_max FROM TRACK;
+  RETURN track_max;
+END;
+/
+SELECT get_most_exp_track FROM DUAL;
+
+-- 3.3 User Defined Scalar Functions
+-- Create a function that returns the average price of invoiceline items in the
+-- invoiceline table
+CREATE OR REPLACE FUNCTION get_avg_price
+RETURN NUMBER
+IS
+  avg_price NUMBER(10, 2);
+BEGIN
+  SELECT AVG(UNITPRICE) INTO avg_price FROM INVOICELINE;
+  RETURN avg_price;
+END;
+/
+SELECT get_avg_price FROM DUAL;
+
+-- 3.4 User Defined Table Valued Functions
+-- Create a function that returns all employees who are born after 1968.
+
+
+
+-- 4.1 Basic Stored Procedure
+-- Create a stored procedure that selects the first and last names of all the
+-- employees.
+CREATE OR REPLACE PROCEDURE get_employees_by_name
+AS
+BEGIN
+
+END;
+/
 
 
 
