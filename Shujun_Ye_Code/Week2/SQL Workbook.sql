@@ -117,7 +117,7 @@ IS
 BEGIN
   SELECT LENGTH(NAME) INTO media_length FROM MEDIATYPE WHERE MEDIATYPEID = media_id;
   RETURN media_length;
-END;
+END; -- Not finish
 /
 SELECT get_mediatype_length(2) FROM DUAL;
 
@@ -154,7 +154,7 @@ RETURN NUMBER
 IS
   avg_price NUMBER(10, 2);
 BEGIN
-  SELECT AVG(UNITPRICE) INTO avg_price FROM INVOICELINE;
+  SELECT AVG(UNITPRICE*QUANTITY) INTO avg_price FROM INVOICELINE;
   RETURN avg_price;
 END;
 /
@@ -162,18 +162,124 @@ SELECT get_avg_price FROM DUAL;
 
 -- 3.4 User Defined Table Valued Functions
 -- Create a function that returns all employees who are born after 1968.
-
-
-
+CREATE OR REPLACE FUNCTION get_employees_by_year
+RETURN SYS_REFCURSOR
+IS
+  year_cursor SYS_REFCURSOR;
+BEGIN
+  OPEN year_cursor FOR
+  SELECT EMPLOYEEID, LASTNAME, FIRSTNAME, BIRTHDATE
+  FROM EMPLOYEE WHERE BIRTHDATE > '31-DEC-68';
+  RETURN year_cursor;
+END;
+/
+SELECT get_employees_by_year FROM DUAL;
 -- 4.1 Basic Stored Procedure
 -- Create a stored procedure that selects the first and last names of all the
 -- employees.
-CREATE OR REPLACE PROCEDURE get_employees_by_name
+CREATE OR REPLACE PROCEDURE get_employees_by_name (e_rc OUT SYS_REFCURSOR)
 AS
 BEGIN
-
+  OPEN e_rc FOR
+  SELECT FIRSTNAME, LASTNAME FROM EMPLOYEE;
+  CLOSE e_rc;
 END;
 /
+DECLARE 
+  e_cursor SYS_REFCURSOR;
+  f_name VARCHAR2(40 BYTE);
+  l_name VARCHAR2(20 BYTE);
+BEGIN
+  get_employees_by_name(e_cursor);
+
+  LOOP
+    FETCH e_cursor INTO f_name, l_name;
+    EXIT WHEN e_cursor%NOTFOUND;
+    DBMS_OUTPUT.PUT_LINE(f_name || ' ' || l_name);
+  END LOOP;
+  CLOSE e_cursor;
+END; -- Error report - ORA-01001: invalid cursor
+/
+
+-- 4.2 Stored Procedure Input Parameters
+-- Create a stored procedure that updates the personal information of an employee.
+CREATE OR REPLACE PROCEDURE update_employee (id IN NUMBER, new_title IN EMPLOYEE.TITLE%TYPE)
+AS
+BEGIN
+  UPDATE EMPLOYEE SET TITLE = new_title WHERE EMPLOYEEID = id;
+END;
+/
+
+-- Create a stored procedure that returns the managers of an employee.
+CREATE OR REPLACE PROCEDURE return_manager(rep_id IN NUMBER, manager OUT EMPLOYEE.FIRSTNAME%TYPE)
+AS
+BEGIN
+  SELECT FIRSTNAME INTO manager FROM EMPLOYEE WHERE EMPLOYEEID = rep_id;
+END;
+/
+
+-- 4.3 Stored Procedure Output Parameters
+-- Create a stored procedure that returns the name and company of a customer.
+CREATE OR REPLACE PROCEDURE return_company_customer (id IN NUMBER, name OUT
+CUSTOMER.FIRSTNAME%TYPE, comp OUT CUSTOMER.COMPANY%TYPE)
+AS
+BEGIN
+  SELECT FIRSTNAME || ' ' || LASTNAME INTO name FROM CUSTOMER WHERE CUSTOMERID = id;
+  SELECT COMPANY INTO comp FROM CUSTOMER WHERE CUSTOMERID = id;
+END;
+/
+
+-- 5.0 Transactions 2
+-- Create a transaction that given a invoiceId will delete that invoice
+
+-- Create a transaction nested within a stored procedure that inserts a new
+-- record in the Customer table
+
+-- 6.1 AFTER/FOR 3
+-- Create an after insert trigger on the employee table fired after a new record
+-- is inserted into the table.
+
+-- Create an after update trigger on the album table that fires after a row is
+-- inserted in the table
+
+-- Create an after delete trigger on the customer table that fires after a row
+-- is deleted from the table.
+
+-- 7.1 INNER
+-- Create an inner join that joins customers and orders and specifies the name
+-- of the customer and the invoiceId.
+SELECT i.INVOICEID AS INVOICEID, c.FIRSTNAME AS FIRSTNAME, c.LASTNAME AS LASTNAME
+FROM CUSTOMER c
+INNER JOIN
+INVOICE i ON c.CUSTOMERID = i.CUSTOMERID;
+
+-- 7.2 OUTER
+-- Create an outer join that joins the customer and invoice table, specifying
+-- the CustomerId, firstname, lastname, invoiceId, and total.
+SELECT c.CUSTOMERID AS CUSTOMERID, c.FIRSTNAME AS FIRSTNAME, c.LASTNAME AS
+LASTNAME, i.INVOICEID AS INVOICEID, i.TOTAL AS TOTAL FROM CUSTOMER c
+FULL OUTER JOIN
+INVOICE i ON c.CUSTOMERID = i.CUSTOMERID;
+
+-- 7.3 RIGHT
+-- Create a right join that joins album and artist specifying artist name and title.
+SELECT ARTIST.NAME AS NAME, ALBUM.TITLE AS TITLE
+FROM ARTIST
+RIGHT JOIN
+ALBUM ON ARTIST.ARTISTID = ALBUM.ARTISTID;
+
+-- 7.4 CROSS
+-- Create a cross join that joins album and artist and sorts by artist name in
+-- ascending order.
+SELECT ARTIST.NAME AS NAME, ALBUM.TITLE AS TITLE
+FROM ARTIST
+CROSS JOIN ALBUM
+ORDER BY ARTIST.NAME;
+
+-- 7.5 SELF
+-- Perform a self-join on the employee table, joining on the reportsto column.
+SELECT * FROM EMPLOYEE e1
+JOIN EMPLOYEE e2 ON e1.EMPLOYEEID = e2.REPORTSTO;
 
 
 
