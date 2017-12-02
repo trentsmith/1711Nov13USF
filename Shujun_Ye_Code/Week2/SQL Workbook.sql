@@ -117,7 +117,7 @@ IS
 BEGIN
   SELECT LENGTH(NAME) INTO media_length FROM MEDIATYPE WHERE MEDIATYPEID = media_id;
   RETURN media_length;
-END; -- Not finish
+END;
 /
 SELECT get_mediatype_length(2) FROM DUAL;
 
