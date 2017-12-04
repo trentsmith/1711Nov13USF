@@ -57,46 +57,46 @@ public class UserDAO_Impl implements UserDAO{
 	
 
 	@Override
-	public User getUser(String username) {{
+	public User getUser(String username) {
 		User user = new User();
 		//user.setUser_id(-1);
 		try(Connection conn = 
 				ConnectionFactory.getInstance().getConnection();){
-			conn.setAutoCommit(false);
+			//conn.setAutoCommit(false);
 			
-			String sql = "select * from users "
-					+ "where username = (?)";
-
+			String sql = "select * from ERS_USERS "
+					+ "where ERS_USERNAME = (?)";
+			System.out.println("inDAO username = " + username);
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
 			//int rows = ps.executeUpdate();
 			//int id = 0;
 			
 			//if(rows !=0) {
-				ResultSet pk = ps.executeQuery();
+			ResultSet pk = ps.executeQuery();
+			System.out.println("before while");
 			while(pk.next()) {
+				System.out.println("in while");
 			//	id = pk.getInt(1);
 				user.setUser_id(pk.getInt("ERS_USERS_ID"));
 				user.setFirstname(pk.getString("USER_FIRST_NAME"));
 				user.setLastname(pk.getString("USER_LAST_NAME"));
 				user.setUsername(pk.getString("ERS_USERNAME"));
 				user.setPassword(pk.getString("ERS_PASSWORD"));
-				user.setEmail(pk.getString("ERS_EMAIL"));
+				user.setEmail(pk.getString("USER_EMAIL"));
 				user.setRole((pk.getInt("USER_ROLE_ID") == 0 ? USER_ROLE.EMPLOYEE : USER_ROLE.MANAGER));
 			}
 				//conn.commit();
 			//}
-			if(user.getUser_id() == null) {
-				user = null;
-			}
 			
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return user;
 	}
-	}
+	
 
 	@Override
 	public ArrayList<User> getAllUsers() {
