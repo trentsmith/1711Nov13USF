@@ -7,6 +7,8 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="css/main.css">
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -21,7 +23,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<div class="jumbotron">
+	<div class="jumbotron bg-info text-white" >
 		<h1>How JDBC is Great?</h1>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<a class="navbar-brand"
@@ -35,7 +37,7 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link"
+					<li class="nav-item text-primary"><a class="nav-link text-primary"
 						href="UnderstandingBootStrap.html">Home</a></li>
 					<li class="nav-item"><a class="nav-link" href="Why.html">Why</a>
 					</li>
@@ -47,16 +49,17 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> Navigation </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="UnderstandingBootStrap.html">Home</a>
+							<a class="dropdown-item text-primary" href="UnderstandingBootStrap.html">Home</a>
 							<a class="dropdown-item" href="Why.html">Why</a> <a
 								class="dropdown-item" href="What.html">What</a>
 
 						</div></li>
 				</ul>
+				
 			</div>
 		</nav>
 		<ul>
-			<p>How does JBDC does work?
+			<p id="testid">How does JBDC does work?
 			<p>
 			<li>Statement: Used to make queries to the database directly.</li>
 			<li>PreparedStatement: Used to make DML statement to the database. The crucial difference between a Statement and a PreparedStatemenr is that a PeparedStatement takes input from the user. This means steps must be ut in place to avoid SQL injection.</li>
@@ -65,6 +68,8 @@
 			<li>DriverManager: It is a class used to manage drivers for Databases. It can be considered the connection factory.</li>
 			<li>Connection: An interface that allows access to a session of a database</li>
 		</ul>
+		<div align="center"><img src="images/images.png" ></div> 
+		
 	</div>
 </body>
 </html>

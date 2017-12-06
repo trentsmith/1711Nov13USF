@@ -14,9 +14,7 @@ function login(){
 	var username = $('#username').val();
 	var password = $('#pass').val();
 	
-	var toSend = [username, password];
-
-	
+	var toSend = [username, password];	
 	
 	var json = JSON.stringify(toSend);
 	console.log(json);
@@ -36,7 +34,7 @@ function login(){
 			}
 			else{
 				$('#message').html(`Welcome ${user.firstname}`) ;
-				window.location.replace('register.html');
+				window.location.replace('app.html');
 				console.log("success!");
 			}
 		}
@@ -48,9 +46,9 @@ function login(){
 	console.log("AFTER HEADER " + xhr.readyState);
 	xhr.send(json);
 	
-
 }
 
 function register(){
-	window.location.replace('register.html');
+	console.log("registering");
+	window.location.replace("register.html");
 }

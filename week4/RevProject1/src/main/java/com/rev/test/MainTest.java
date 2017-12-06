@@ -1,7 +1,7 @@
 package com.rev.test;
 
-import com.rev.DAO.DAO;
-import com.rev.DAO.DAOimp;
+import com.rev.dao.DAO;
+import com.rev.dao.DAOimp;
 
 public class MainTest {
 	

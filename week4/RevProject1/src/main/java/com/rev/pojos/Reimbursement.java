@@ -1,8 +1,8 @@
-package com.rev.POJO;
+package com.rev.pojos;
 
 public class Reimbursement {
 
-	private int rID;
+	private int reimbID;
 	private double amount;
 	private double submitted;
 	private double resolved;
@@ -15,10 +15,10 @@ public class Reimbursement {
 	
 	public Reimbursement() {}
 	
-	public Reimbursement(int rID, double amount, double submitted, double resolved, String description, String receipt,
+	public Reimbursement(int reimbID, double amount, double submitted, double resolved, String description, String receipt,
 			int author, int resolver, int statusID, int typeID) {
 		super();
-		this.rID = rID;
+		this.reimbID = reimbID;
 		this.amount = amount;
 		this.submitted = submitted;
 		this.resolved = resolved;
@@ -34,14 +34,14 @@ public class Reimbursement {
 
 
 
-	public int getrID() {
-		return rID;
+	public int getReimbID() {
+		return reimbID;
 	}
 
 
 
-	public void setrID(int rID) {
-		this.rID = rID;
+	public void setReimbID(int reimbID) {
+		this.reimbID = reimbID;
 	}
 
 
@@ -151,7 +151,7 @@ public class Reimbursement {
 
 	@Override
 	public String toString() {
-		return "Reimbursement [rID=" + rID + ", amount=" + amount + ", submitted=" + submitted + ", resolved="
+		return "Reimbursement [reimbID=" + reimbID + ", amount=" + amount + ", submitted=" + submitted + ", resolved="
 				+ resolved + ", description=" + description + ", receipt=" + receipt + ", author=" + author
 				+ ", resolver=" + resolver + ", statusID=" + statusID + ", typeID=" + typeID + "]";
 	}

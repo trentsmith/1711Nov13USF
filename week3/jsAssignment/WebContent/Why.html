@@ -7,6 +7,8 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
 	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="css/main.css">
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -21,12 +23,12 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<div class="jumbotron">
+	<div class="jumbotron bg-info text-white" >
 		<h1>Why JDBC is Great</h1>
 
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navline">
 			<a class="navbar-brand"
-				href="https://v4-alpha.getbootstrap.com/components/navbar/">Navbar</a>
+				href="https://v4-alpha.getbootstrap.com/components/navbar/" >Navbar</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -34,10 +36,10 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent" >
 				<ul class="navbar-nav mr-auto">
 
-					<li class="nav-item"><a class="nav-link"
+					<li class="nav-item" ><a class="nav-link text-primary"
 						href="UnderstandingBootStrap.html">Home</a></li>
 					<li class="nav-item"><a class="nav-link" href="What.html">What</a>
 					</li>
@@ -48,7 +50,7 @@
 						role="button" data-toggle="dropdown" aria-haspopup="true"
 						aria-expanded="false"> Navigation </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="UnderstandingBootStrap.html">Home</a>
+							<a class="dropdown-item text-primary" href="UnderstandingBootStrap.html">Home</a>
 							<a class="dropdown-item" href="How.html">How</a> <a
 								class="dropdown-item" href="What.html">What</a>
 
@@ -57,12 +59,14 @@
 			</div>
 		</nav>
 		<ul>
-			<p>JDBC is great not just for the reasons I like it.
+			<p id="testid">Other reasons JDBC is great.
 			</p>
 			<li>As previously mentioned it connects Java applications and databases.</li>
 			<li>This is an integral part Of developing a full stack application.</li>
 			<li>It allows for data to be persisted for an application outside of runtime.</li>
 		</ul>
+		<div align="center"><img src="images/images.png" ></div> 
+		
 	</div>
 
 

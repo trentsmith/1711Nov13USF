@@ -8,18 +8,17 @@ public class RequestHelper {
 	public String process(HttpServletRequest req, HttpServletResponse resp) {
 		System.err.println("[LOG] Processing request with helper : " + req.getRequestURI());
 
-
-		//		Factory.getMachineGun();
-
+		System.out.println("in process method");
 		switch (req.getRequestURI()) {
-
-		default:
-			return "login.html";
-		
+		case "view/profile": {
+			return "partials/profile.html";
+		}
+		case "view/home": {
+			return "partials/home.html";
+		}
 		}
 
-
+		return null;
 
 	}
-
 }

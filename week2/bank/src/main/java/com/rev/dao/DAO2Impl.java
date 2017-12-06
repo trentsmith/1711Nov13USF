@@ -34,12 +34,7 @@ public class DAO2Impl implements DAO2 {
 			while (pk.next()) {
 				usr.setUid(pk.getInt(1));
 			}
-			/*
-			usr.setFirstName(pk.getString(2));
-			usr.setLastName(pk.getString(3));
-			usr.setUserName(pk.getString(4));
-			usr.setPassword(pk.getString(5));
-			*/
+			
 			conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -1,4 +1,4 @@
-package com.rev.POJO;
+package com.rev.pojos;
 
 public class UserRole {
 	

@@ -1,12 +1,12 @@
-package com.rev.DAO;
+package com.rev.dao;
 
 import java.util.ArrayList;
 
-import com.rev.POJO.ERSUser;
-import com.rev.POJO.Reimbursement;
-import com.rev.POJO.ReimbursementStatus;
-import com.rev.POJO.ReimbursementType;
-import com.rev.POJO.UserRole;
+import com.rev.pojos.ERSUser;
+import com.rev.pojos.Reimbursement;
+import com.rev.pojos.ReimbursementStatus;
+import com.rev.pojos.ReimbursementType;
+import com.rev.pojos.UserRole;
 
 public interface DAO {
 	

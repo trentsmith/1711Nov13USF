@@ -1,16 +1,69 @@
-
-
 window.onload = function(){
 	$('#message').hide();
-	$('#register').on('click', register);
-	$('#username').blur(validateEmail);
-	$('#register').attr("disabled",true);
+	$('#login').on('click',login);
+	$('#register').on('click', registerView);
 	
+}
+
+function login(){
+//	alert("logging in");
+	var username = $('#username').val();
+	var password = $('#pass').val();
+	
+	var toSend = [username, password];	
+	
+	var json = JSON.stringify(toSend);
+	console.log(json);
+	
+	var xhr = new XMLHttpRequest();
+	console.log(xhr.readyState);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status==200){
+			console.log("in xhr callback" + xhr.responseText);
+			var user = JSON.parse(xhr.responseText);
+			$('#message').show();
+			if(user == null){
+				$('#message').html("Invalid user") ;
+			}
+			else if(user.id == 0){
+				$('#message').html( "Invalid password");
+			}
+			else{
+				$('#message').html(`Welcome ${user.firstname}`) ;
+				window.location.replace('app.html');
+				console.log("success!");
+			}
+		}
+	};
+	
+	xhr.open("POST","login", true);
+	console.log(xhr.readyState);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	console.log("AFTER HEADER " + xhr.readyState);
+	xhr.send(json);	
+
+}
+
+function registerView(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+		//	window.location.replace(xhr.responseText);
+		document.getElementById('view').innerHTML = xhr.responseText;
+		$('#message').hide();
+		$('#register').on('click', register);
+		$('#username').blur(validateEmail);
+		$('#register').attr("disabled",true);
+		}
+	}	
+	xhr.open("GET", "register" , true);
+	xhr.send();
 }
 
 //function onblur that notifies the user of whether or not their email address is already in use 
 function validateEmail(){
-	console.log("blurred")
+	$('#register').attr("disabled",false);
+	$('#message').hide();
 	var username = $('#username').val();
 	
 	var toSend = [username, ""];
@@ -20,12 +73,16 @@ function validateEmail(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status==200){
-			console.log("in xhr callback" + xhr.responseText);
 			var user = JSON.parse(xhr.responseText);
-			$('#message').show();
+			console.log("USER: " + user);
 			if(user != null){
+				$('#message').show();
 				$('#message').html("Username Already in use! Please try another") ;
 				$('#register').attr("disabled",true);
+			}
+			else{
+				$('#register').attr("disabled",false);
+				$('#message').hide();
 			}
 		}
 	};
@@ -41,8 +98,7 @@ function register(){
 	var uname = $('#username').val();
 	var pass = $('#pass').val();
 	// add password validation and second input confirmation?
-	
-	
+
 	var user = {
 			id: 0,
 			firstname: fn,
@@ -67,54 +123,3 @@ function register(){
 	alert("Success! Please login using your credentials");
 	window.location.replace('landing.html');
 }
-
-
-
-
-function validatePass(){
-	// got from internet. need to edit keeping for ideas 
-	$('input[type=password]').keyup(function() {
-		var pswd = $(this).val();
-
-		//validate the length
-		if ( pswd.length < 8 ) {
-			$('#length').removeClass('valid').addClass('invalid');
-		} else {
-			$('#length').removeClass('invalid').addClass('valid');
-		}
-
-		//validate letter
-		if ( pswd.match(/[A-z]/) ) {
-			$('#letter').removeClass('invalid').addClass('valid');
-		} else {
-			$('#letter').removeClass('valid').addClass('invalid');
-		}
-
-		//validate capital letter
-		if ( pswd.match(/[A-Z]/) ) {
-			$('#capital').removeClass('invalid').addClass('valid');
-		} else {
-			$('#capital').removeClass('valid').addClass('invalid');
-		}
-
-		//validate number
-		if ( pswd.match(/\d/) ) {
-			$('#number').removeClass('invalid').addClass('valid');
-		} else {
-			$('#number').removeClass('valid').addClass('invalid');
-		}
-
-		//validate space
-		if ( pswd.match(/[^a-zA-Z0-9\-\/]/) ) {
-			$('#space').removeClass('invalid').addClass('valid');
-		} else {
-			$('#space').removeClass('valid').addClass('invalid');
-		}
-
-	}).focus(function() {
-		$('#pswd_info').show();
-	}).blur(function() {
-		$('#pswd_info').hide();
-	});
-
-};
